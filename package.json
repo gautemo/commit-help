@@ -1,6 +1,6 @@
 {
 	"name": "commit-help",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "CLI to help write commit messages",
 	"type": "module",
 	"bin": "./bin/main.js",
@@ -14,7 +14,11 @@
 		"type": "git",
 		"url": "git+https://github.com/gautemo/commit-help.git"
 	},
-	"keywords": ["git", "commit", "cli"],
+	"keywords": [
+		"git",
+		"commit",
+		"cli"
+	],
 	"author": "Gaute Meek Olsen",
 	"license": "MIT",
 	"bugs": {
@@ -23,13 +27,13 @@
 	"homepage": "https://github.com/gautemo/commit-help#readme",
 	"dependencies": {
 		"@clack/prompts": "^0.9.1",
-		"tinyexec": "^0.3.2",
-		"typescript": "^5.7.3"
+		"tinyexec": "^0.3.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@types/node": "^22.10.10",
 		"tsup": "^8.3.6",
-		"tsx": "^4.19.2"
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.3"
 	}
 }
