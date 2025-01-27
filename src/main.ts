@@ -45,5 +45,5 @@ if(commitResult.exitCode !== 0) {
   process.exit(0);
 }
 
-log.info(commitResult.stdout)
+log.info(commitResult.stdout.trim())
 outro('commit successfull');
