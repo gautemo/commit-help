@@ -2,6 +2,7 @@
 import { cancel, intro, isCancel, log, outro, select } from "@clack/prompts";
 import { commitMessage, hasStaged, isInGitRepo } from "./git";
 import { conventional } from "./conventional";
+import { gitmoji } from "./gitmoji";
 
 intro(`Commit help`);
 
@@ -36,7 +37,7 @@ if(style === 'conventional') {
   commit = await conventional(abort)
 }
 if(style === 'gitmoji') {
-  commit = ''
+  commit = await gitmoji(abort)
 }
 if(!commit) throw new Error('not valid commit message')
 
