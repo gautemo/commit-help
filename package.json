@@ -3,9 +3,7 @@
   "version": "0.0.1",
   "description": "CLI to help write commit messages",
   "type": "module",
-  "bin": {
-    "commit-help": "./bin/main.js"
-  },
+  "bin": "./bin/main.js",
   "scripts": {
     "commit-help": "tsx src/main.ts",
     "build": "tsup"

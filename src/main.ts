@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { cancel, intro, isCancel, log, outro, select } from "@clack/prompts";
 import { commitMessage, hasStaged, isInGitRepo } from "./git";
 import { conventional } from "./conventional";
