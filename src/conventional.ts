@@ -107,9 +107,9 @@ export async function conventional(abort: () => never) {
 
   return `${firstLine}
   
-${description ?? ''}
+${description ? breakLines(description) : ''}
 
-${breakingDescription ? `BREAKING CHANGE: ${breakingDescription}` : ''}
+${breakingDescription ? `BREAKING CHANGE: ${breakLines(breakingDescription)}` : ''}
 ${footers.join('\n')}
 `.trim()
 }
