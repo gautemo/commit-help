@@ -3,8 +3,12 @@
   "version": "0.0.1",
   "description": "CLI to help write commit messages",
   "type": "module",
+  "bin": {
+    "commit-help": "./bin/main.js"
+  },
   "scripts": {
-    "commit-help": "tsx src/main.ts"
+    "commit-help": "tsx src/main.ts",
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
@@ -28,6 +32,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.10",
+    "tsup": "^8.3.6",
     "tsx": "^4.19.2"
   }
 }
