@@ -1,4 +1,4 @@
-import { cancel, intro, isCancel, outro, select } from "@clack/prompts";
+import { cancel, intro, isCancel, log, outro, select } from "@clack/prompts";
 import { commitMessage, hasStaged, isInGitRepo } from "./git";
 import { conventional } from "./conventional";
 
@@ -45,4 +45,5 @@ if(commitResult.exitCode !== 0) {
   process.exit(0);
 }
 
-outro(commitResult.stdout);
+log.info(commitResult.stdout)
+outro('commit successfull');

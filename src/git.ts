@@ -1,4 +1,3 @@
-import { log } from '@clack/prompts';
 import {x} from 'tinyexec';
 
 export async function hasStaged() {
