@@ -73,7 +73,7 @@ export async function conventional(abort: () => never) {
   let footer = ''
   while(true) {
     const footerPrompt = await confirm({
-      message: 'Add footer?',
+      message: `Add ${footer.length > 0 ? 'another ' : ''}footer?`,
       initialValue: false,
     })
     if(isCancel(footerPrompt)) {
@@ -107,9 +107,9 @@ export async function conventional(abort: () => never) {
 
   return `${firstLine}
   
-  ${description}
+${description ?? ''}
 
-  ${breakingDescription ? `BREAKING CHANGE: ${breakingDescription}` : ''}
-  ${footer}
-  `.trim()
+${breakingDescription ? `BREAKING CHANGE: ${breakingDescription}` : ''}
+${footer}
+`.trim()
 }
