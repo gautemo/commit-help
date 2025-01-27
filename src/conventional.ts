@@ -70,10 +70,10 @@ export async function conventional(abort: () => never) {
     abort()
   }
 
-  let footer = ''
+  const footers = []
   while(true) {
     const footerPrompt = await confirm({
-      message: `Add ${footer.length > 0 ? 'another ' : ''}footer?`,
+      message: `Add ${footers.length > 0 ? 'another ' : ''}footer?`,
       initialValue: false,
     })
     if(isCancel(footerPrompt)) {
@@ -99,7 +99,7 @@ export async function conventional(abort: () => never) {
       if(isCancel(footerValue)) {
         abort()
       }
-      footer += `${footerKey.trim().replaceAll(/\s/g, '-')}: ${breakLines(footerValue)}`
+      footers.push(`${footerKey.trim().replaceAll(/\s/g, '-')}: ${breakLines(footerValue)}`)
     } else {
       break
     }
@@ -110,6 +110,6 @@ export async function conventional(abort: () => never) {
 ${description ?? ''}
 
 ${breakingDescription ? `BREAKING CHANGE: ${breakingDescription}` : ''}
-${footer}
+${footers.join('\n')}
 `.trim()
 }
