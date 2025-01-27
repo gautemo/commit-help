@@ -1,5 +1,7 @@
 # commit-help
 
+[![install size](https://packagephobia.com/badge?p=commit-help)](https://packagephobia.com/result?p=commit-help)
+
 CLI to help write commit messages
 
 Usage:
