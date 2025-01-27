@@ -1,6 +1,6 @@
 {
   "name": "commit-help",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "CLI to help write commit messages",
   "type": "module",
   "bin": "./bin/main.js",
