@@ -6,4 +6,5 @@ export default defineConfig({
 	minify: true,
 	dts: false,
 	target: false,
+	outExtensions: () => ({ js: '.js' }),
 })
