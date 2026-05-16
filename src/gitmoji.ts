@@ -1,5 +1,5 @@
 import { confirm, group, isCancel, select, text } from '@clack/prompts'
-import { breakLines } from './utils'
+import { breakLines } from './utils.ts'
 
 export async function gitmoji(abort: () => never) {
 	const firstLineValues = await group(
@@ -14,14 +14,14 @@ export async function gitmoji(abort: () => never) {
 					message: 'What is the scope of this change (e.g. component or file name)',
 					placeholder: 'press enter to skip',
 					validate(value) {
-						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
+						if (value?.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),
 			shortDescription: () =>
 				text({
 					message: 'Short description',
 					validate(value) {
-						if (value.length === 0) return 'Short description is required'
+						if (!value) return 'Short description is required'
 						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),

@@ -5,8 +5,8 @@
 	"type": "module",
 	"bin": "./bin/main.js",
 	"scripts": {
-		"commit-help": "tsx src/main.ts",
-		"build": "tsup",
+		"commit-help": "node src/main.ts",
+		"build": "tsdown",
 		"biome:check": "biome check",
 		"biome:fix": "biome check --write ."
 	},
@@ -26,12 +26,11 @@
 	},
 	"homepage": "https://github.com/gautemo/commit-help#readme",
 	"devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@clack/prompts": "^0.9.1",
-		"@types/node": "^22.10.10",
-    "tinyexec": "^0.3.2",
-		"tsup": "^8.3.6",
-		"tsx": "^4.19.2",
-		"typescript": "^5.7.3"
+		"@biomejs/biome": "^2.4.15",
+		"@clack/prompts": "^1.4.0",
+		"@types/node": "^25.8.0",
+		"tinyexec": "^1.1.2",
+		"tsdown": "^0.22.0",
+		"typescript": "^6.0.3"
 	}
 }

@@ -1,5 +1,5 @@
 import { confirm, group, isCancel, select, text } from '@clack/prompts'
-import { breakLines } from './utils'
+import { breakLines } from './utils.ts'
 
 export async function conventional(abort: () => never) {
 	const firstLineValues = await group(
@@ -26,7 +26,7 @@ export async function conventional(abort: () => never) {
 					message: 'What is the scope of this change (e.g. component or file name)',
 					placeholder: 'press enter to skip',
 					validate(value) {
-						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
+						if (value?.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),
 			breaking: () => confirm({ message: 'Are there any breaking changes?', initialValue: false }),
@@ -34,7 +34,7 @@ export async function conventional(abort: () => never) {
 				text({
 					message: 'Short description',
 					validate(value) {
-						if (value.length === 0) return 'Short description is required'
+						if (!value) return 'Short description is required'
 						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),
@@ -55,7 +55,7 @@ export async function conventional(abort: () => never) {
 		}
 	}
 
-	let breakingDescription: string | undefined = undefined
+	let breakingDescription: string | undefined
 	if (firstLineValues.breaking) {
 		const breakingDescriptionPrompt = await text({
 			message: 'Describe the breaking change (\\n for line breaks)',
@@ -89,7 +89,7 @@ export async function conventional(abort: () => never) {
 			const footerKey = await text({
 				message: 'footer token (e.g. Fix, Reviewed-by, Refs)',
 				validate(value) {
-					if (value.length === 0) return 'token is required'
+					if (!value) return 'token is required'
 					if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 				},
 			})
@@ -99,7 +99,7 @@ export async function conventional(abort: () => never) {
 			const footerValue = await text({
 				message: 'footer token (e.g. Fix, Reviewed-by, Refs)',
 				validate(value) {
-					if (value.length === 0) return 'value is required'
+					if (!value) return 'value is required'
 				},
 			})
 			if (isCancel(footerValue)) {

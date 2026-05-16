@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { cancel, intro, isCancel, log, outro, select } from '@clack/prompts'
-import { conventional } from './conventional'
-import { commitMessage, hasStaged, isInGitRepo } from './git'
-import { gitmoji } from './gitmoji'
+import { conventional } from './conventional.ts'
+import { commitMessage, hasStaged, isInGitRepo } from './git.ts'
+import { gitmoji } from './gitmoji.ts'
 
 intro('Commit help')
 
@@ -32,7 +32,7 @@ if (isCancel(style)) {
 	abort()
 }
 
-let commit: string | undefined = undefined
+let commit: string | undefined
 if (style === 'conventional') {
 	commit = await conventional(abort)
 }

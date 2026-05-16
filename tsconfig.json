@@ -1,9 +1,10 @@
 {
 	"compilerOptions": {
-		"module": "ESNext",
 		"moduleResolution": "Bundler",
 		"target": "ESNext",
-		"strict": true,
+		"types": ["node"],
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
 		"noUncheckedIndexedAccess": true
 	}
 }

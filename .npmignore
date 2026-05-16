@@ -1,5 +1,5 @@
 node_modules
 src
 tsconfig.json
-tsup.config.ts
+tsdown.config.ts
 biome.json
