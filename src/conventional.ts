@@ -66,6 +66,7 @@ export async function conventional(abort: () => never) {
 	const description = await multiline({
 		message: 'Longer description',
 		placeholder: 'press enter to skip',
+		showSubmit: true,
 	})
 	if (isCancel(description)) {
 		abort()
