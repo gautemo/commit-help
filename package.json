@@ -26,11 +26,11 @@
 	},
 	"homepage": "https://github.com/gautemo/commit-help#readme",
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.15",
+		"@biomejs/biome": "^2.4.16",
 		"@clack/prompts": "^1.5.0",
-		"@types/node": "^25.8.0",
-		"tinyexec": "^1.1.2",
-		"tsdown": "^0.22.0",
+		"@types/node": "^25.9.1",
+		"tinyexec": "^1.2.4",
+		"tsdown": "^0.22.1",
 		"typescript": "^6.0.3"
 	}
 }
