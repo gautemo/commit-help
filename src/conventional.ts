@@ -1,5 +1,4 @@
-import { confirm, group, isCancel, select, text } from '@clack/prompts'
-import { breakLines } from './utils.ts'
+import { confirm, group, isCancel, multiline, select, text } from '@clack/prompts'
 
 export async function conventional(abort: () => never) {
 	const firstLineValues = await group(
@@ -25,9 +24,6 @@ export async function conventional(abort: () => never) {
 				text({
 					message: 'What is the scope of this change (e.g. component or file name)',
 					placeholder: 'press enter to skip',
-					validate(value) {
-						if (value?.includes('\\n')) return 'line breaks (\\n) are not allowed'
-					},
 				}),
 			breaking: () => confirm({ message: 'Are there any breaking changes?', initialValue: false }),
 			shortDescription: () =>
@@ -35,7 +31,6 @@ export async function conventional(abort: () => never) {
 					message: 'Short description',
 					validate(value) {
 						if (!value) return 'Short description is required'
-						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),
 		},
@@ -57,8 +52,8 @@ export async function conventional(abort: () => never) {
 
 	let breakingDescription: string | undefined
 	if (firstLineValues.breaking) {
-		const breakingDescriptionPrompt = await text({
-			message: 'Describe the breaking change (\\n for line breaks)',
+		const breakingDescriptionPrompt = await multiline({
+			message: 'Describe the breaking change',
 			placeholder: 'press enter to skip',
 		})
 		if (isCancel(breakingDescriptionPrompt)) {
@@ -68,8 +63,8 @@ export async function conventional(abort: () => never) {
 		}
 	}
 
-	const description = await text({
-		message: 'Longer description (\\n for line breaks)',
+	const description = await multiline({
+		message: 'Longer description',
 		placeholder: 'press enter to skip',
 	})
 	if (isCancel(description)) {
@@ -90,13 +85,12 @@ export async function conventional(abort: () => never) {
 				message: 'footer token (e.g. Fix, Reviewed-by, Refs)',
 				validate(value) {
 					if (!value) return 'token is required'
-					if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 				},
 			})
 			if (isCancel(footerKey)) {
 				abort()
 			}
-			const footerValue = await text({
+			const footerValue = await multiline({
 				message: 'footer token (e.g. Fix, Reviewed-by, Refs)',
 				validate(value) {
 					if (!value) return 'value is required'
@@ -105,7 +99,7 @@ export async function conventional(abort: () => never) {
 			if (isCancel(footerValue)) {
 				abort()
 			}
-			footers.push(`${footerKey.trim().replaceAll(/\s/g, '-')}: ${breakLines(footerValue)}`)
+			footers.push(`${footerKey.trim().replaceAll(/\s/g, '-')}: ${footerValue}`)
 		} else {
 			break
 		}
@@ -113,9 +107,9 @@ export async function conventional(abort: () => never) {
 
 	return `${firstLine}
   
-${description ? breakLines(description) : ''}
+${description}
 
-${breakingDescription ? `BREAKING CHANGE: ${breakLines(breakingDescription)}` : ''}
+${breakingDescription ? `BREAKING CHANGE: ${breakingDescription}` : ''}
 ${footers.join('\n')}
 `.trim()
 }

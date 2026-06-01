@@ -1,5 +1,4 @@
-import { confirm, group, isCancel, select, text } from '@clack/prompts'
-import { breakLines } from './utils.ts'
+import { confirm, group, isCancel, multiline, select, text } from '@clack/prompts'
 
 export async function gitmoji(abort: () => never) {
 	const firstLineValues = await group(
@@ -13,16 +12,12 @@ export async function gitmoji(abort: () => never) {
 				text({
 					message: 'What is the scope of this change (e.g. component or file name)',
 					placeholder: 'press enter to skip',
-					validate(value) {
-						if (value?.includes('\\n')) return 'line breaks (\\n) are not allowed'
-					},
 				}),
 			shortDescription: () =>
 				text({
 					message: 'Short description',
 					validate(value) {
 						if (!value) return 'Short description is required'
-						if (value.includes('\\n')) return 'line breaks (\\n) are not allowed'
 					},
 				}),
 		},
@@ -42,8 +37,8 @@ export async function gitmoji(abort: () => never) {
 		}
 	}
 
-	const description = await text({
-		message: 'Longer description (\\n for line breaks)',
+	const description = await multiline({
+		message: 'Longer description',
 		placeholder: 'press enter to skip',
 	})
 	if (isCancel(description)) {
@@ -52,7 +47,7 @@ export async function gitmoji(abort: () => never) {
 
 	return `${firstLine}
   
-${description ? breakLines(description) : ''}
+${description}
 `.trim()
 }
 

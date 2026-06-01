@@ -27,7 +27,7 @@
 	"homepage": "https://github.com/gautemo/commit-help#readme",
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.15",
-		"@clack/prompts": "^1.4.0",
+		"@clack/prompts": "^1.5.0",
 		"@types/node": "^25.8.0",
 		"tinyexec": "^1.1.2",
 		"tsdown": "^0.22.0",
