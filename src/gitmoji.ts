@@ -11,7 +11,7 @@ export async function gitmoji(abort: () => never) {
 			scope: () =>
 				text({
 					message: 'What is the scope of this change (e.g. component or file name)',
-					placeholder: 'press enter to skip',
+					placeholder: 'optional',
 				}),
 			shortDescription: () =>
 				text({
@@ -39,7 +39,8 @@ export async function gitmoji(abort: () => never) {
 
 	const description = await multiline({
 		message: 'Longer description',
-		placeholder: 'press enter to skip',
+		placeholder: 'optional',
+		showSubmit: true,
 	})
 	if (isCancel(description)) {
 		abort()

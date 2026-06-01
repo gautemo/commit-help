@@ -23,7 +23,7 @@ export async function conventional(abort: () => never) {
 			scope: () =>
 				text({
 					message: 'What is the scope of this change (e.g. component or file name)',
-					placeholder: 'press enter to skip',
+					placeholder: 'optional',
 				}),
 			breaking: () => confirm({ message: 'Are there any breaking changes?', initialValue: false }),
 			shortDescription: () =>
@@ -54,7 +54,8 @@ export async function conventional(abort: () => never) {
 	if (firstLineValues.breaking) {
 		const breakingDescriptionPrompt = await multiline({
 			message: 'Describe the breaking change',
-			placeholder: 'press enter to skip',
+			placeholder: 'optional',
+			showSubmit: true,
 		})
 		if (isCancel(breakingDescriptionPrompt)) {
 			abort()
@@ -65,7 +66,7 @@ export async function conventional(abort: () => never) {
 
 	const description = await multiline({
 		message: 'Longer description',
-		placeholder: 'press enter to skip',
+		placeholder: 'optional',
 		showSubmit: true,
 	})
 	if (isCancel(description)) {
@@ -96,6 +97,7 @@ export async function conventional(abort: () => never) {
 				validate(value) {
 					if (!value) return 'value is required'
 				},
+				showSubmit: true,
 			})
 			if (isCancel(footerValue)) {
 				abort()
