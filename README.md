@@ -1,7 +1,7 @@
 # commit-help
 
-[![NPM Version](https://img.shields.io/npm/v/commit-help)](https://www.npmjs.com/package/commit-help)
-[![install size](https://packagephobia.com/badge?p=commit-help)](https://packagephobia.com/result?p=commit-help)
+[![Version](https://npmx.dev/api/registry/badge/version/commit-help)](https://npmx.dev/package/commit-help)
+[![Install size](https://npmx.dev/api/registry/badge/size/commit-help)](https://npmx.dev/package/commit-help)
 
 CLI to help write commit messages
 
