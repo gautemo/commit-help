@@ -1,6 +1,6 @@
 {
 	"name": "commit-help",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "CLI to help write commit messages",
 	"type": "module",
 	"bin": {
@@ -27,12 +27,14 @@
 		"url": "https://github.com/gautemo/commit-help/issues"
 	},
 	"homepage": "https://github.com/gautemo/commit-help#readme",
+	"dependencies": {
+		"@clack/prompts": "^1.9.0",
+		"tinyexec": "^1.3.1"
+	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.16",
-		"@clack/prompts": "^1.5.0",
-		"@types/node": "^25.9.1",
-		"tinyexec": "^1.2.4",
-		"tsdown": "^0.22.1",
-		"typescript": "^6.0.3"
+		"@biomejs/biome": "^2.6.6",
+		"@types/node": "^26.6.6",
+		"tsdown": "^0.23.7",
+		"typescript": "^7.0.2"
 	}
 }
